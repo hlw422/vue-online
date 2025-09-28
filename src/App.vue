@@ -55,6 +55,12 @@
               <span>系统设置</span>
             </el-menu-item>
 
+                 <!-- 菜单3：系统设置 -->
+            <el-menu-item index="/monitor">
+        <el-icon><Monitor /></el-icon>
+              <span>监控</span>
+            </el-menu-item>
+
             <!-- 菜单4：关于我们 -->
             <el-menu-item index="/about">
               <el-icon><InfoFilled /></el-icon>
@@ -82,9 +88,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { ElMenu, ElMenuItem, ElSubMenu, ElIcon } from 'element-plus';
-import { HomeFilled, UserFilled, InfoFilled, Menu,Setting } from '@element-plus/icons-vue';
+import { HomeFilled, UserFilled, InfoFilled, Menu,Setting, Monitor } from '@element-plus/icons-vue';
 
 const isAsideCollapse = ref(false);
 </script>
@@ -151,5 +157,11 @@ html, body, .common-layout {
   border-right: none;
   height: 100%;
 }
+.layout-footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
 </style>
-/* 折叠状态下菜单项
