@@ -1,61 +1,92 @@
 <template>
   <div class="user-center">
-    <div style="height:px;background-color: white;margin: 50px;">
-      <el-avatar src="http://106.14.236.60:5000/files/logo.jpg" style="width: 150px;height: 150px;">
-      </el-avatar>
+    <el-avatar class="user_avatar" icon="el-icon-user-solid" src="http://106.14.236.60:5000/files/logo.jpg">
+    </el-avatar>
+    <div class="user_info">
+      <el-image :src="vip_url" alt="vip标识" @click="vip_url = 'http://106.14.236.60:5000/files/VIP_shine.svg'"
+        style="width: 20px; height: 20px;" />
+      <div class="user_email">邮箱:</div>
+      <div class="user_phone">手机号:</div>
     </div>
-    <div class="items">
-      <div class="item">
-        <div class="vipLevel">
-          <div>
-            <img :src="currentVipUrl" style="width: 30px;height: 30px;" alt="">
-          </div>
-        </div>
-      </div>
-      <div class="item" warp>暂无简介</div>
-      <div class="item">女</div>
+  </div>
+  <div class="user_rank">
+    <div class="user_rank_info">
+      <p>排名</p>
+      <p style="font-size: 20px;font-weight: bold;">1.6万</p>
+      <p style="color: gray;">|</p>
+      <p>积分</p>
+      <p style="font-size: 20px;font-weight: bold;">8</p>
+      <p style="color: gray;">|</p>
+      <p>获赞</p>
+      <p style="font-size: 20px;font-weight: bold;">0</p>
+      <p style="color: gray;">|</p>
     </div>
-    <el-button type="primary" style="margin-top: 20px;" @click="handleEditVip">修改VIP信息</el-button>
+
+    <div class="user_rank_btn">
+      <el-button type="text" class="btn_edit">修改资料</el-button>
+      <el-button type="text" class="btn_edit">批量导入文章</el-button>
+    </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref, computed } from 'vue'
-const vip_url_shine = ref<String>("http://106.14.236.60:5000/files/VIP_shine.svg");
-const vip_url_gray = ref<String>("http://106.14.236.60:5000/files/VIP_gray.svg");
+<script setup lang="ts">
+import { ref } from 'vue';
 
-// 正确定义计算属性：返回当前应该显示的VIP图片地址
-const currentVipUrl = computed(() => {
-  console.log("computed 被调用", is_vip.value);
-  return is_vip.value ? vip_url_shine.value : vip_url_gray.value;
-})
-const is_vip = ref<Boolean>(false);
-
-const handleEditVip = () => {
-  is_vip.value = !is_vip.value;
-}
+const vip_url = ref<String>('http://106.14.236.60:5000/files/VIP_gray.svg');
+//const vip_url=ref<String>('http://106.14.236.60:5000/files/VIP_gray.svg');
 </script>
-<style scoped>
+
+<style scoped lang="scss">
 .user-center {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: start;
-  align-items: center;
+  gap: 20px;
 }
 
-.vipLevel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
+.user_avatar {
+  width: 100px;
+  height: 100px;
+  line-height: 70px;
+  /* 确保文字垂直居中 */
 }
 
-.items {
+.user_info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  gap: 10px;
 }
 
-.item {
-  height: 30px;
-  margin: 10px;
+.user_rank {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.user_rank_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user_rank_btn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+}
+.btn_edit {
+  background-color: #409eff;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100px;
+  font-size: 16px;
 }
 </style>
